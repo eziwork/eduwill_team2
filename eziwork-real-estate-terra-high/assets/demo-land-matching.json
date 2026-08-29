@@ -1,0 +1,32 @@
+{
+  "intake_version": "1.0",
+  "report_id": "demo-land-matching",
+  "task_mode": "MARKET_REPORT_WITH_MATCHING",
+  "evidence_mode": "demo",
+  "basis_date": "2026-08-29",
+  "target": {"name": "교육면 토지 후보", "address": "경기도 예시시 교육면", "property_type": "LAND", "lawd_cd": null, "lot_number_hint": "교육면 일대"},
+  "transaction": {"trade_type": "SALE"},
+  "scope": {"building_mode": "NOT_APPLICABLE", "building_names": [], "area_mode": "SELECTED", "area_basis": "LAND", "requested_area_min_sqm": 650.0, "requested_area_max_sqm": 1000.0},
+  "customer": {"role": "BUY", "decision_question": "예산과 도로조건에 맞는 토지 후보는 무엇일까요?"},
+  "terms": {"proposed_price_krw": 600000000, "deposit_krw": null, "monthly_rent_krw": null, "intended_use": "단독주택"},
+  "period": {"history_years": 5},
+  "collection": {"include_current_market": true, "permission_mode": "RESEARCH_SAMPLE", "max_detail_pages": 10, "listings_path": "demo-land-candidates.json"},
+  "matching": {
+    "candidates_path": "demo-land-candidates.json",
+    "must_haves": [
+      {"field": "price_krw", "operator": "lte", "value": 600000000, "label": "예산 이내"},
+      {"field": "land_area_sqm", "operator": "between", "value": [650, 1000], "label": "요청 면적"}
+    ],
+    "preferences": [
+      {"field": "attributes.road_access", "operator": "eq", "value": true, "label": "도로 접함"},
+      {"field": "attributes.water_available", "operator": "eq", "value": true, "label": "상수도 확인"},
+      {"field": "attributes.residential_review", "operator": "eq", "value": true, "label": "주거용 검토 가능"}
+    ]
+  },
+  "output": {"formats": ["html", "pdf"], "brand_name": "EZIWORK", "brand_color": "#2c61ef", "agent_name": "", "contact": ""},
+  "demo": {"official_rows": [
+    {"trade_type": "SALE", "contract_date": "2026-04-16", "deal_amount_krw": 540000000, "land_area_sqm": 780.0, "cancelled": false},
+    {"trade_type": "SALE", "contract_date": "2025-11-21", "deal_amount_krw": 510000000, "land_area_sqm": 720.0, "cancelled": false},
+    {"trade_type": "SALE", "contract_date": "2025-07-02", "deal_amount_krw": 590000000, "land_area_sqm": 900.0, "cancelled": false}
+  ]}
+}

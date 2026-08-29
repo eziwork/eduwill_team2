@@ -1,0 +1,39 @@
+{
+  "intake_version": "1.0",
+  "report_id": "demo-apartment-sale",
+  "task_mode": "MARKET_REPORT",
+  "evidence_mode": "demo",
+  "basis_date": "2026-08-29",
+  "target": {
+    "name": "교육 센트럴 아파트",
+    "address": "서울특별시 예시구 교육동",
+    "property_type": "APT",
+    "lawd_cd": null,
+    "lot_number_hint": null
+  },
+  "transaction": {"trade_type": "SALE"},
+  "scope": {
+    "building_mode": "ALL",
+    "building_names": [],
+    "area_mode": "SELECTED",
+    "area_basis": "EXCLUSIVE",
+    "requested_area_min_sqm": 84.0,
+    "requested_area_max_sqm": 85.0
+  },
+  "customer": {"role": "BUY", "decision_question": "10억 6천만원에 매수해도 괜찮을까요?"},
+  "terms": {"proposed_price_krw": 1060000000, "deposit_krw": null, "monthly_rent_krw": null, "intended_use": null},
+  "period": {"history_years": 3},
+  "collection": {"include_current_market": true, "permission_mode": "RESEARCH_SAMPLE", "max_detail_pages": 10, "listings_path": "demo-apartment-listings.json"},
+  "matching": {"candidates_path": null, "must_haves": [], "preferences": []},
+  "output": {"formats": ["html", "pdf"], "brand_name": "EZIWORK 부동산", "logo_path": "demo-broker-logo.svg", "brand_color": "#2c61ef", "agent_name": "교육용 중개상담", "contact": ""},
+  "demo": {
+    "official_rows": [
+      {"trade_type": "SALE", "contract_date": "2026-07-18", "deal_amount_krw": 1050000000, "exclusive_area_sqm": 84.43, "floor": 12, "cancelled": false},
+      {"trade_type": "SALE", "contract_date": "2026-05-11", "deal_amount_krw": 1030000000, "exclusive_area_sqm": 84.43, "floor": 8, "cancelled": false},
+      {"trade_type": "SALE", "contract_date": "2026-03-03", "deal_amount_krw": 1010000000, "exclusive_area_sqm": 84.43, "floor": 15, "cancelled": false},
+      {"trade_type": "SALE", "contract_date": "2026-01-25", "deal_amount_krw": 990000000, "exclusive_area_sqm": 84.43, "floor": 6, "cancelled": false},
+      {"trade_type": "SALE", "contract_date": "2025-11-09", "deal_amount_krw": 980000000, "exclusive_area_sqm": 84.43, "floor": 10, "cancelled": false},
+      {"trade_type": "SALE", "contract_date": "2025-10-01", "deal_amount_krw": 970000000, "exclusive_area_sqm": 84.43, "floor": 4, "cancelled": true}
+    ]
+  }
+}

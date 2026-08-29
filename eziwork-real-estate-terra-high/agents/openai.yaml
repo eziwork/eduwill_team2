@@ -1,0 +1,8 @@
+interface:
+  display_name: "EZIWORK 부동산 Terra High"
+  short_description: "Terra High 전용 9페이지 부동산 리포트와 100점 시각 QA"
+  brand_color: "#0A67FF"
+  default_prompt: "Use $eziwork-real-estate-terra-high in a GPT-5.6 Terra high-reasoning task to create and visually quality-gate a sourced nine-page Korean real-estate report."
+
+policy:
+  allow_implicit_invocation: false

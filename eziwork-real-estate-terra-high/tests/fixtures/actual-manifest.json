@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "source_id": "MOLIT_APT_TRADE",
+  "endpoint": "https://apis.data.go.kr/1613000/RTMSDataSvcAptTradeDev/getRTMSDataSvcAptTradeDev",
+  "retrieved_at": "2026-08-29T09:00:00+09:00",
+  "query": {"lawd_cd": "11680", "start_ym": "202508", "end_ym": "202608", "property_type": "APT", "trade_type": "SALE", "exclusive_area_min_sqm": 84.0, "exclusive_area_max_sqm": 85.0},
+  "requests": [
+    {"month": "202605", "page": 1, "returned_rows": 1, "raw_file": "fixture-202605.xml"},
+    {"month": "202606", "page": 1, "returned_rows": 1, "raw_file": "fixture-202606.xml"},
+    {"month": "202607", "page": 1, "returned_rows": 1, "raw_file": "fixture-202607.xml"}
+  ]
+}

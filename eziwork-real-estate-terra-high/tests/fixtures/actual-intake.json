@@ -1,0 +1,16 @@
+{
+  "intake_version": "1.0",
+  "report_id": "actual-fixture-apartment",
+  "task_mode": "MARKET_REPORT",
+  "evidence_mode": "actual",
+  "basis_date": "2026-08-29",
+  "target": {"name": "검증아파트", "address": "서울특별시 검증구 검증동", "property_type": "APT", "lawd_cd": "11680", "lot_number_hint": null},
+  "transaction": {"trade_type": "SALE"},
+  "scope": {"building_mode": "ALL", "building_names": [], "area_mode": "SELECTED", "area_basis": "EXCLUSIVE", "requested_area_min_sqm": 84.0, "requested_area_max_sqm": 85.0},
+  "customer": {"role": "BUY", "decision_question": "10억 6천만원에 계약해도 될까요?"},
+  "terms": {"proposed_price_krw": 1060000000, "deposit_krw": null, "monthly_rent_krw": null, "intended_use": null},
+  "period": {"history_years": 1},
+  "collection": {"include_current_market": true, "permission_mode": "RESEARCH_SAMPLE", "max_detail_pages": 10, "listings_path": "actual-listings.json"},
+  "matching": {"candidates_path": null, "must_haves": [], "preferences": []},
+  "output": {"formats": ["html", "pdf"], "brand_name": "검증 공인중개사사무소", "logo_path": "../../assets/demo-broker-logo.svg", "brand_color": "#2c61ef", "agent_name": "검증 담당", "contact": "02-000-0000"}
+}

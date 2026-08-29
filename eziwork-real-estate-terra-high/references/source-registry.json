@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "sources": {
+    "MOLIT_APT_TRADE": {
+      "authority": "OFFICIAL_PRIMARY",
+      "provider": "MOLIT_RTMS",
+      "dataset_id": "15126468",
+      "credential_ref": "DATA_GO_KR",
+      "host": "https://apis.data.go.kr",
+      "path": "/1613000/RTMSDataSvcAptTradeDev/getRTMSDataSvcAptTradeDev",
+      "response_format": "XML",
+      "supports": [{"property_type": "APT", "trade_type": "SALE"}],
+      "required_params": ["LAWD_CD", "DEAL_YMD", "pageNo", "numOfRows"]
+    },
+    "MOLIT_APT_RENT": {
+      "authority": "OFFICIAL_PRIMARY",
+      "provider": "MOLIT_RTMS",
+      "dataset_id": "15126474",
+      "credential_ref": "DATA_GO_KR",
+      "host": "https://apis.data.go.kr",
+      "path": "/1613000/RTMSDataSvcAptRent/getRTMSDataSvcAptRent",
+      "response_format": "XML",
+      "supports": [{"property_type": "APT", "trade_type": "JEONSE"}, {"property_type": "APT", "trade_type": "MONTHLY_RENT"}],
+      "required_params": ["LAWD_CD", "DEAL_YMD", "pageNo", "numOfRows"]
+    },
+    "MOLIT_ROWHOUSE_TRADE": {
+      "authority": "OFFICIAL_PRIMARY",
+      "provider": "MOLIT_RTMS",
+      "dataset_id": "15126467",
+      "credential_ref": "DATA_GO_KR",
+      "host": "https://apis.data.go.kr",
+      "path": "/1613000/RTMSDataSvcRHTrade/getRTMSDataSvcRHTrade",
+      "response_format": "XML",
+      "supports": [{"property_type": "ROWHOUSE", "trade_type": "SALE"}],
+      "required_params": ["LAWD_CD", "DEAL_YMD", "pageNo", "numOfRows"]
+    },
+    "MOLIT_ROWHOUSE_RENT": {
+      "authority": "OFFICIAL_PRIMARY",
+      "provider": "MOLIT_RTMS",
+      "dataset_id": "15126473",
+      "credential_ref": "DATA_GO_KR",
+      "host": "https://apis.data.go.kr",
+      "path": "/1613000/RTMSDataSvcRHRent/getRTMSDataSvcRHRent",
+      "response_format": "XML",
+      "supports": [{"property_type": "ROWHOUSE", "trade_type": "JEONSE"}, {"property_type": "ROWHOUSE", "trade_type": "MONTHLY_RENT"}],
+      "required_params": ["LAWD_CD", "DEAL_YMD", "pageNo", "numOfRows"]
+    },
+    "MOLIT_DETACHED_TRADE": {
+      "authority": "OFFICIAL_PRIMARY",
+      "provider": "MOLIT_RTMS",
+      "dataset_id": "15126465",
+      "credential_ref": "DATA_GO_KR",
+      "host": "https://apis.data.go.kr",
+      "path": "/1613000/RTMSDataSvcSHTrade/getRTMSDataSvcSHTrade",
+      "response_format": "XML",
+      "supports": [{"property_type": "DETACHED_HOUSE", "trade_type": "SALE"}],
+      "required_params": ["LAWD_CD", "DEAL_YMD", "pageNo", "numOfRows"]
+    },
+    "MOLIT_DETACHED_RENT": {
+      "authority": "OFFICIAL_PRIMARY",
+      "provider": "MOLIT_RTMS",
+      "dataset_id": "15126472",
+      "credential_ref": "DATA_GO_KR",
+      "host": "https://apis.data.go.kr",
+      "path": "/1613000/RTMSDataSvcSHRent/getRTMSDataSvcSHRent",
+      "response_format": "XML",
+      "supports": [{"property_type": "DETACHED_HOUSE", "trade_type": "JEONSE"}, {"property_type": "DETACHED_HOUSE", "trade_type": "MONTHLY_RENT"}],
+      "required_params": ["LAWD_CD", "DEAL_YMD", "pageNo", "numOfRows"]
+    },
+    "MOLIT_OFFICETEL_TRADE": {
+      "authority": "OFFICIAL_PRIMARY",
+      "provider": "MOLIT_RTMS",
+      "dataset_id": "15126464",
+      "credential_ref": "DATA_GO_KR",
+      "host": "https://apis.data.go.kr",
+      "path": "/1613000/RTMSDataSvcOffiTrade/getRTMSDataSvcOffiTrade",
+      "response_format": "XML",
+      "supports": [{"property_type": "OFFICETEL", "trade_type": "SALE"}],
+      "required_params": ["LAWD_CD", "DEAL_YMD", "pageNo", "numOfRows"]
+    },
+    "MOLIT_OFFICETEL_RENT": {
+      "authority": "OFFICIAL_PRIMARY",
+      "provider": "MOLIT_RTMS",
+      "dataset_id": "15126475",
+      "credential_ref": "DATA_GO_KR",
+      "host": "https://apis.data.go.kr",
+      "path": "/1613000/RTMSDataSvcOffiRent/getRTMSDataSvcOffiRent",
+      "response_format": "XML",
+      "supports": [{"property_type": "OFFICETEL", "trade_type": "JEONSE"}, {"property_type": "OFFICETEL", "trade_type": "MONTHLY_RENT"}],
+      "required_params": ["LAWD_CD", "DEAL_YMD", "pageNo", "numOfRows"]
+    },
+    "MOLIT_LAND_TRADE": {
+      "authority": "OFFICIAL_PRIMARY",
+      "provider": "MOLIT_RTMS",
+      "dataset_id": "15126466",
+      "credential_ref": "DATA_GO_KR",
+      "host": "https://apis.data.go.kr",
+      "path": "/1613000/RTMSDataSvcLandTrade/getRTMSDataSvcLandTrade",
+      "response_format": "XML",
+      "supports": [{"property_type": "LAND", "trade_type": "SALE"}],
+      "required_params": ["LAWD_CD", "DEAL_YMD", "pageNo", "numOfRows"]
+    },
+    "MOLIT_COMMERCIAL_TRADE": {
+      "authority": "OFFICIAL_PRIMARY",
+      "provider": "MOLIT_RTMS",
+      "dataset_id": "15126463",
+      "credential_ref": "DATA_GO_KR",
+      "host": "https://apis.data.go.kr",
+      "path": "/1613000/RTMSDataSvcNrgTrade/getRTMSDataSvcNrgTrade",
+      "response_format": "XML",
+      "supports": [{"property_type": "COMMERCIAL", "trade_type": "SALE"}],
+      "required_params": ["LAWD_CD", "DEAL_YMD", "pageNo", "numOfRows"]
+    },
+    "BUILDING_HUB": {
+      "authority": "OFFICIAL_PRIMARY",
+      "provider": "MOLIT_BUILDING_HUB",
+      "dataset_id": "15134735",
+      "credential_ref": "DATA_GO_KR",
+      "host": "https://apis.data.go.kr",
+      "path": "/1613000/BldRgstHubService",
+      "response_format": "JSON_XML",
+      "supports_property_types": ["APT", "ROWHOUSE", "DETACHED_HOUSE", "OFFICETEL", "COMMERCIAL"]
+    },
+    "JUSO_ADDRESS": {
+      "authority": "OFFICIAL_PRIMARY",
+      "provider": "JUSO",
+      "credential_ref": "JUSO",
+      "host": "https://business.juso.go.kr",
+      "response_format": "JSON",
+      "purpose": "ADDRESS_RESOLUTION"
+    },
+    "VWORLD_LAND_CONTEXT": {
+      "authority": "OFFICIAL_PRIMARY",
+      "provider": "VWORLD",
+      "credential_ref": "VWORLD",
+      "host": "https://api.vworld.kr",
+      "response_format": "JSON_XML",
+      "supports_property_types": ["LAND", "DETACHED_HOUSE", "COMMERCIAL"]
+    },
+    "KOSIS_NEIGHBORHOOD": {
+      "authority": "OFFICIAL_AGGREGATE",
+      "provider": "KOSIS",
+      "credential_ref": "KOSIS",
+      "host": "https://kosis.kr",
+      "response_format": "JSON",
+      "purpose": "NEIGHBORHOOD_CONTEXT"
+    },
+    "NAVER_PAY_LAND_BROWSER": {
+      "authority": "BROWSER_OBSERVED",
+      "provider": "NAVER_PAY_LAND",
+      "credential_ref": null,
+      "purpose": "CURRENT_ASKING_PRICES"
+    },
+    "ASIL_BROWSER": {
+      "authority": "BROWSER_OBSERVED",
+      "provider": "ASIL",
+      "credential_ref": null,
+      "purpose": "SECONDARY_VISIBLE_MARKET_CONTEXT"
+    }
+  }
+}

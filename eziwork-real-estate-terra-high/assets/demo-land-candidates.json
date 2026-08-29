@@ -1,0 +1,15 @@
+{
+  "source": {
+    "name": "교육용 토지 후보 표본",
+    "url": "내부 생성 예시 · 외부 링크 없음",
+    "retrieved_at": "2026-08-29T11:00:00+09:00",
+    "quality_status": "SAMPLE_ONLY",
+    "query_conditions": "교육면 토지 · 예산 및 면적 조건"
+  },
+  "listings": [
+    {"listing_id": "LAND-D-01", "name": "교육리 후보 A", "price_krw": 570000000, "land_area_sqm": 820, "attributes": {"road_access": true, "water_available": true, "residential_review": true}},
+    {"listing_id": "LAND-D-02", "name": "교육리 후보 B", "price_krw": 520000000, "land_area_sqm": 740, "attributes": {"road_access": true, "water_available": null, "residential_review": true}},
+    {"listing_id": "LAND-D-03", "name": "학습리 후보 C", "price_krw": 610000000, "land_area_sqm": 900, "attributes": {"road_access": true, "water_available": true, "residential_review": true}},
+    {"listing_id": "LAND-D-04", "name": "학습리 후보 D", "price_krw": 550000000, "land_area_sqm": 630, "attributes": {"road_access": false, "water_available": true, "residential_review": null}}
+  ]
+}

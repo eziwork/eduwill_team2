@@ -1,0 +1,14 @@
+{
+  "source": {
+    "name": "교육용 공개매물 표본",
+    "url": "내부 생성 예시 · 외부 링크 없음",
+    "retrieved_at": "2026-08-29T10:00:00+09:00",
+    "quality_status": "SAMPLE_ONLY",
+    "query_conditions": "교육 센트럴 아파트 전용 84㎡대 매매"
+  },
+  "listings": [
+    {"listing_id": "APT-D-01", "name": "101동 중층", "price_krw": 1060000000, "exclusive_area_sqm": 84.43, "floor": 10, "direction": "남향", "verified_at": "2026-08-29", "attributes": {"move_in_ready": true}},
+    {"listing_id": "APT-D-02", "name": "102동 고층", "price_krw": 1090000000, "exclusive_area_sqm": 84.43, "floor": 18, "direction": "남동향", "verified_at": "2026-08-29", "attributes": {"move_in_ready": false}},
+    {"listing_id": "APT-D-03", "name": "103동 저층", "price_krw": 1020000000, "exclusive_area_sqm": 84.43, "floor": 3, "direction": "동향", "verified_at": "2026-08-29", "attributes": {"move_in_ready": true}}
+  ]
+}
