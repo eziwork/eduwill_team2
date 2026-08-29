@@ -34,6 +34,10 @@ Save a service key only through UTF-8 standard input:
 pwsh -NoProfile -File scripts/save_provider_api_key.ps1 -Provider DATA_GO_KR
 ```
 
+On Windows this stores the key with current-user DPAPI. On macOS it stores the key in the current user's Keychain. A Windows `.dpapi` file is not portable to macOS. `DATA_GO_KR_SERVICE_KEY` may be used as a process environment fallback on either platform.
+
+`DATA_GO_KR` is the fixed default credential reference for the bundled MOLIT RTMS routes. Register the service key once in the current operating system's secure store; do not place the plaintext key in `SKILL.md`, source code, JSON, commands, reports, or logs.
+
 Never print or interpolate the key into a URL, report, screenshot, saved command, or log.
 
 ## Public listings and candidate input
@@ -82,4 +86,3 @@ Keep four lanes separate:
 Every `actual` source record includes an ID, grade, lane, original URL or internal-record label, basis date, retrieval time, reproducible query conditions, scope, and limitation. Every artifact includes its path and SHA-256.
 
 The preparation script creates the evidence groups, counts, exclusions, calculations, claims, and hashes. `COMPLETE` or `ZERO_RESULT` official groups may produce `PASS`; an explicitly limited listing sample produces `PASS WITH CONDITIONS`; missing required evidence, a changed artifact, calculation mismatch, or unresolved collection error produces `HOLD`.
-

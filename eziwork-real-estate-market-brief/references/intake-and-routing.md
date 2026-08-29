@@ -79,7 +79,8 @@ For listing matching, append:
   },
   "output": {
     "formats": ["html", "pdf"],
-    "brand_name": "EZIWORK",
+    "brand_name": "잠실공인중개사사무소",
+    "logo_path": "assets/jamsil-realty-logo.png",
     "brand_color": "#2c61ef",
     "agent_name": null,
     "contact": null
@@ -103,7 +104,7 @@ For listing matching, append:
 
 ## Minimum gate
 
-Always require a supported task mode, evidence mode, precise target, property type, trade type, customer role, one decision question, and one of `1`, `3`, `5`, or `7` history years.
+Always require a supported task mode, evidence mode, precise target, property type, trade type, customer role, one decision question, and one of `1`, `3`, `5`, or `7` history years. Before customer report generation, require the real-estate office name in `output.brand_name` and a local PNG, JPG, JPEG, WEBP, or SVG logo image in `output.logo_path`. Resolve a relative logo path from the intake file and copy it into the report package; never invent or silently replace the user's brand.
 
 For a broker handout, set `communication.mode` to `CUSTOMER_SALES`. All standard report profile values, including legacy `COMPACT_6`, normalize to `EXTENDED_9` and the canonical `EZIWORK_GOLDEN_V3` renderer. The profile field remains input-compatible only; it must not select a different design engine. `period.history_years` controls evidence collection and is distinct from `decision_context.intended_holding_years`.
 
@@ -117,6 +118,6 @@ Do not infer a unit number, parcel number, price, permission, intended use, or c
 
 ## Ask only material questions
 
-Ask at most three short questions at a time and skip known facts. Questions are material when they select a different official dataset, change comparable rows, change the customer route, or determine whether the report can be `actual`.
+Ask at most three short questions at a time and skip known facts. Questions are material when they select a different official dataset, change comparable rows, change the customer route, determine whether the report can be `actual`, or supply the report brand. If the office name or logo is missing, ask one combined question such as `리포트에 표시할 부동산 이름과 로고 이미지 파일을 보내주세요.` before building the report.
 
 Offer one year as the quick collection option and three years as the broader apartment comparison; never choose for the user.

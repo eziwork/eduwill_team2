@@ -25,7 +25,7 @@
   "period": {"history_years": 3},
   "collection": {"include_current_market": true, "permission_mode": "RESEARCH_SAMPLE", "max_detail_pages": 10, "listings_path": "demo-apartment-listings.json"},
   "matching": {"candidates_path": null, "must_haves": [], "preferences": []},
-  "output": {"formats": ["html", "pdf"], "brand_name": "EZIWORK", "brand_color": "#2c61ef", "agent_name": "교육용 중개상담", "contact": ""},
+  "output": {"formats": ["html", "pdf"], "brand_name": "EZIWORK 부동산", "logo_path": "demo-broker-logo.svg", "brand_color": "#2c61ef", "agent_name": "교육용 중개상담", "contact": ""},
   "demo": {
     "official_rows": [
       {"trade_type": "SALE", "contract_date": "2026-07-18", "deal_amount_krw": 1050000000, "exclusive_area_sqm": 84.43, "floor": 12, "cancelled": false},
@@ -37,4 +37,3 @@
     ]
   }
 }
-

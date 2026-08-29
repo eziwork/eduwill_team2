@@ -490,6 +490,25 @@ def audit_request(data: dict[str, Any], base_dir: Path | None = None) -> dict[st
             unusable_group_ids.add(group_id)
 
     asset_manifest: list[dict[str, Any]] = []
+    brand = data.get("brand") if isinstance(data.get("brand"), dict) else {}
+    brand_logo_path = str(brand.get("logo_path", "")).strip()
+    if brand_logo_path:
+        resolved_logo = _local_path(brand_logo_path, base_dir).resolve()
+        if not resolved_logo.is_file():
+            errors.append(f"brand.logo_path file not found: {resolved_logo}")
+        else:
+            asset_manifest.append(
+                {
+                    "kind": "brand_logo",
+                    "path": brand_logo_path,
+                    "sha256": _sha256_bytes(resolved_logo.read_bytes()),
+                    "source_id": "USER_PROVIDED_BRAND",
+                    "as_of": str(data.get("basis_date", "")),
+                    "description": f"{str(brand.get('name', '')).strip()} logo",
+                }
+            )
+    elif evidence_mode == "actual" and data.get("report_type") != "checkpoint":
+        errors.append("brand.logo_path is required in actual report mode")
     if data.get("report_type") == "checkpoint":
         target = data.get("target", {})
         for kind in ("image", "map"):
@@ -728,7 +747,7 @@ def audit_request(data: dict[str, Any], base_dir: Path | None = None) -> dict[st
     checks.append({"name": "evidence_completeness", "passed": not any(item.startswith("evidence_groups[") for item in errors)})
     checks.append({"name": "calculation_reproduction", "passed": not any(item.startswith("calculations[") for item in errors)})
     checks.append({"name": "claim_synchronization", "passed": not any(item.startswith(("claims[", "metrics[", "overview", "sections[", "summary.", "checkpoint.", "target", "customer", "checklist")) for item in errors)})
-    checks.append({"name": "asset_integrity", "passed": not any(item.startswith(("target.image", "target.map")) for item in errors)})
+    checks.append({"name": "asset_integrity", "passed": not any(item.startswith(("brand.logo_path", "target.image", "target.map")) for item in errors)})
 
     return {
         "schema_version": "2.0",

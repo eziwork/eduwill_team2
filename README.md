@@ -2,14 +2,18 @@
 
 한국 부동산의 공식 실거래와 현재 공개매물 또는 중개사가 제공한 후보자료를 분리해 분석하고, 고객용 9페이지 HTML/PDF 브리핑을 만드는 Codex Agent Skill입니다. 표준 보고서는 `EZIWORK_GOLDEN_V3` 엔진 버전 `3.1.0`으로 생성됩니다.
 
-이 저장소의 `eziwork-real-estate-market-brief` 폴더 전체가 하나의 설치 가능한 스킬입니다. 교육용 예제는 API 키 없이 실행되며, 실제 국토교통부 자료를 수집하려면 대상 데이터셋의 활용승인과 서비스키가 필요합니다.
+이 저장소의 `eziwork-real-estate-market-brief` 폴더 전체가 하나의 설치 가능한 스킬입니다. 교육용 예제는 API 키 없이 실행되며, 실제 국토교통부 자료를 수집하려면 대상 데이터셋의 활용승인과 서비스키가 필요합니다. 실제 고객용 리포트는 생성 전에 부동산 이름과 로고 이미지를 확인하고, 로고를 표지와 전 페이지 하단에 포함합니다.
 
 ## 설치
 
-`eziwork-real-estate-market-brief` 폴더를 다음 위치에 복사한 뒤 새 Codex 작업에서 호출합니다.
+`eziwork-real-estate-market-brief` 폴더를 운영체제에 맞는 위치에 복사한 뒤 새 Codex 작업에서 호출합니다.
 
 ```text
+# Windows
 %USERPROFILE%\.codex\skills\eziwork-real-estate-market-brief
+
+# macOS
+~/.codex/skills/eziwork-real-estate-market-brief
 ```
 
 ```text
@@ -23,6 +27,12 @@ $eziwork-real-estate-market-brief
 pwsh -NoProfile -File scripts/run_report.ps1 `
   -IntakePath assets/demo-apartment.json `
   -ReportRoot reports/demo-apartment
+```
+
+실제 국토교통부 수집에 사용할 서비스키는 원문을 코드나 JSON에 넣지 않고 다음 명령의 표준 입력으로 한 번 등록합니다. Windows는 현재 사용자 DPAPI, macOS는 현재 사용자 Keychain에 저장합니다.
+
+```powershell
+pwsh -NoProfile -File scripts/save_provider_api_key.ps1 -Provider DATA_GO_KR
 ```
 
 ## 지원범위

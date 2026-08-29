@@ -1,8 +1,8 @@
 $ErrorActionPreference = "Stop"
 $skillRoot = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
-$registryPath = Join-Path $skillRoot "references\source-registry.json"
-$collectorPath = Join-Path $skillRoot "scripts\collect_molit_rtms.ps1"
-$testRoot = Join-Path ([System.IO.Path]::GetTempPath()) "eziwork-real-estate-market-brief\rtms-dry-run"
+$registryPath = Join-Path (Join-Path $skillRoot "references") "source-registry.json"
+$collectorPath = Join-Path (Join-Path $skillRoot "scripts") "collect_molit_rtms.ps1"
+$testRoot = Join-Path (Join-Path ([System.IO.Path]::GetTempPath()) "eziwork-real-estate-market-brief") "rtms-dry-run"
 New-Item -ItemType Directory -Force -Path $testRoot | Out-Null
 $registry = Get-Content -LiteralPath $registryPath -Raw -Encoding UTF8 | ConvertFrom-Json
 $tested = 0

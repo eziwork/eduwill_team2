@@ -12,6 +12,5 @@
   "period": {"history_years": 1},
   "collection": {"include_current_market": true, "permission_mode": "RESEARCH_SAMPLE", "max_detail_pages": 10, "listings_path": "actual-listings.json"},
   "matching": {"candidates_path": null, "must_haves": [], "preferences": []},
-  "output": {"formats": ["html", "pdf"], "brand_name": "EZIWORK", "brand_color": "#2c61ef", "agent_name": "검증 담당", "contact": "02-000-0000"}
+  "output": {"formats": ["html", "pdf"], "brand_name": "검증 공인중개사사무소", "logo_path": "../../assets/demo-broker-logo.svg", "brand_color": "#2c61ef", "agent_name": "검증 담당", "contact": "02-000-0000"}
 }
-

@@ -17,6 +17,8 @@ HISTORY_YEARS = {1, 3, 5, 7}
 COMMUNICATION_MODES = {"CUSTOMER_SALES", "BUYER_ADVISORY"}
 REPORT_PROFILES = {"AUTO", "COMPACT_6", "EXTENDED_9"}
 CONVERSION_GOALS = {"SITE_VISIT_CONSULTATION", "INFORMED_DECISION"}
+LOGO_SUFFIXES = {".png", ".jpg", ".jpeg", ".webp", ".svg"}
+MAX_LOGO_BYTES = 5 * 1024 * 1024
 OFFICIAL_ROUTES = {
     (property_type, trade_type)
     for property_type in {"APT", "ROWHOUSE", "DETACHED_HOUSE", "OFFICETEL"}
@@ -70,6 +72,24 @@ def validate_intake(data: dict[str, Any], base_dir: Path | None = None) -> tuple
         errors.append("customer.role is unsupported")
     if not _nonempty_string(customer.get("decision_question")):
         errors.append("customer.decision_question is required")
+
+    output = data.get("output") if isinstance(data.get("output"), dict) else {}
+    brand_name = output.get("brand_name")
+    logo_path = output.get("logo_path")
+    if data.get("evidence_mode") == "actual" and not _nonempty_string(brand_name):
+        errors.append("output.brand_name is required for an actual customer report")
+    if data.get("evidence_mode") == "actual" and not _nonempty_string(logo_path):
+        errors.append("output.logo_path is required for an actual customer report")
+    if _nonempty_string(logo_path):
+        resolved_logo = Path(str(logo_path))
+        resolved_logo = resolved_logo if resolved_logo.is_absolute() else base_dir / resolved_logo
+        resolved_logo = resolved_logo.resolve()
+        if resolved_logo.suffix.lower() not in LOGO_SUFFIXES:
+            errors.append("output.logo_path must be PNG, JPG, JPEG, WEBP, or SVG")
+        elif not resolved_logo.is_file():
+            errors.append(f"output.logo_path file not found: {resolved_logo}")
+        elif resolved_logo.stat().st_size > MAX_LOGO_BYTES:
+            errors.append("output.logo_path must be 5 MB or smaller")
 
     communication = data.get("communication") if isinstance(data.get("communication"), dict) else {}
     if communication:

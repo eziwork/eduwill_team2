@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
-import { createRequire } from "node:module";
 import { pathToFileURL } from "node:url";
+import { resolveChromiumRuntime } from "./browser_runtime.mjs";
 
 
 function readArg(name) {
@@ -10,39 +10,6 @@ function readArg(name) {
     throw new Error(`Missing required argument: ${name}`);
   }
   return process.argv[index + 1];
-}
-
-
-function loadPlaywright() {
-  const requireCandidates = [
-    createRequire(path.resolve(process.cwd(), "package.json")),
-    createRequire(import.meta.url),
-  ];
-  const bundledModules = process.env.CODEX_NODE_MODULES;
-  if (bundledModules) {
-    requireCandidates.push(createRequire(path.join(bundledModules, "_resolver.cjs")));
-  }
-  for (const candidate of requireCandidates) {
-    try {
-      return candidate("playwright");
-    } catch {
-      // Try the next valid module root.
-    }
-  }
-  throw new Error("Playwright was not found. Run from a workspace with playwright or set CODEX_NODE_MODULES to the bundled node_modules directory.");
-}
-
-
-function findBrowser() {
-  const configured = process.env.HTML_PDF_BROWSER;
-  const candidates = [
-    configured,
-    "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
-    "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",
-    "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
-    "C:\\Program Files\\Microsoft\\Edge\\Application\\msedge.exe",
-  ].filter(Boolean);
-  return candidates.find((candidate) => fs.existsSync(candidate));
 }
 
 
@@ -55,11 +22,7 @@ async function main() {
   fs.mkdirSync(path.dirname(output), { recursive: true });
   if (fs.existsSync(output)) fs.unlinkSync(output);
 
-  const { chromium } = loadPlaywright();
-  const executablePath = findBrowser();
-  const launchOptions = { headless: true };
-  if (executablePath) launchOptions.executablePath = executablePath;
-
+  const { chromium, launchOptions } = resolveChromiumRuntime();
   const browser = await chromium.launch(launchOptions);
   try {
     const page = await browser.newPage({ viewport: { width: 1280, height: 900 }, deviceScaleFactor: 1 });

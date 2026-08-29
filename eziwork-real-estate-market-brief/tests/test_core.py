@@ -82,6 +82,15 @@ class MatchingTests(unittest.TestCase):
 
 
 class IntakeTests(unittest.TestCase):
+    def test_actual_customer_report_requires_office_name_and_logo(self) -> None:
+        fixtures = SKILL_ROOT / "tests" / "fixtures"
+        intake = json.loads((fixtures / "actual-intake.json").read_text(encoding="utf-8"))
+        intake["output"].pop("brand_name")
+        intake["output"].pop("logo_path")
+        errors, _warnings = validate_intake(intake, fixtures)
+        self.assertIn("output.brand_name is required for an actual customer report", errors)
+        self.assertIn("output.logo_path is required for an actual customer report", errors)
+
     def test_unsupported_land_rent_is_warning_not_silent_substitution(self) -> None:
         intake = json.loads((SKILL_ROOT / "assets" / "demo-land-matching.json").read_text(encoding="utf-8"))
         intake["task_mode"] = "MARKET_REPORT"
@@ -120,12 +129,22 @@ class EndToEndPreparationTests(unittest.TestCase):
             audit = audit_request(request, root)
             self.assertEqual(release, "PASS WITH CONDITIONS", audit["errors"])
             self.assertEqual(audit["derived_release_status"], "PASS WITH CONDITIONS", audit["errors"])
+            self.assertEqual(request["brand"]["name"], "검증 공인중개사사무소")
+            self.assertEqual(request["brand"]["logo_path"], "assets/brand-logo.svg")
+            self.assertTrue((root / "assets" / "brand-logo.svg").is_file())
+            self.assertTrue(any(item["kind"] == "brand_logo" for item in audit["asset_manifest"]))
+
+            request["_base_dir"] = str(root)
+            html = render_report(request)
+            self.assertIn('class="brand-logo"', html)
+            self.assertIn("data:image/svg+xml;base64,", html)
 
     def test_customer_sales_auto_routes_budget_and_horizon_to_extended_nine(self) -> None:
         fixtures = SKILL_ROOT / "tests" / "fixtures"
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
             intake = json.loads((fixtures / "actual-intake.json").read_text(encoding="utf-8"))
+            intake["output"]["logo_path"] = str((SKILL_ROOT / "assets" / "demo-broker-logo.svg").resolve())
             intake["communication"] = {
                 "mode": "CUSTOMER_SALES",
                 "report_profile": "AUTO",
@@ -161,6 +180,7 @@ class EndToEndPreparationTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
             intake = json.loads((SKILL_ROOT / "assets" / "demo-apartment.json").read_text(encoding="utf-8"))
+            intake["output"]["logo_path"] = str((SKILL_ROOT / "assets" / "demo-broker-logo.svg").resolve())
             intake["customer"]["role"] = "SELL"
             intake["customer"]["decision_question"] = "지금 매도 상담을 시작해도 괜찮을까요?"
             intake["communication"] = {

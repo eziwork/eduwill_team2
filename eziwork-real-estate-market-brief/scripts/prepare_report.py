@@ -54,6 +54,20 @@ def resolve_path(value: str | None, base_dir: Path) -> Path | None:
     return path if path.is_absolute() else (base_dir / path).resolve()
 
 
+def stage_output_asset(value: str | None, base_dir: Path, report_root: Path, stem: str) -> str:
+    source = resolve_path(value, base_dir)
+    if source is None:
+        return ""
+    source = source.resolve()
+    if not source.is_file():
+        raise ValueError(f"output asset not found: {source}")
+    destination = report_root / "assets" / f"{stem}{source.suffix.lower()}"
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    if source != destination.resolve():
+        shutil.copy2(source, destination)
+    return relative(destination, report_root)
+
+
 def number(value: Any) -> float | None:
     if value in (None, "") or isinstance(value, bool):
         return None
@@ -715,6 +729,7 @@ def build_report_request(
         },
         "brand": {
             "name": intake.get("output", {}).get("brand_name") or "EZIWORK",
+            "logo_path": intake.get("output", {}).get("logo_path") or "",
             "color": intake.get("output", {}).get("brand_color") or "#2c61ef",
             "agent_name": intake.get("output", {}).get("agent_name") or "",
             "contact": intake.get("output", {}).get("contact") or "",
@@ -830,6 +845,7 @@ def prepare(args: argparse.Namespace) -> tuple[Path, Path, str]:
 
     report_root = args.report_root.resolve()
     report_root.mkdir(parents=True, exist_ok=True)
+    brand_logo_path = stage_output_asset(intake.get("output", {}).get("logo_path"), intake_path.parent, report_root, "brand-logo")
     write_json(report_root / "intake.json", intake)
 
     registry = _load_registry(Path(__file__).resolve().parent)
@@ -873,6 +889,7 @@ def prepare(args: argparse.Namespace) -> tuple[Path, Path, str]:
             write_json(report_root / "normalized" / "listings.json", {"source": listing_source, "listings": listing_rows})
 
     report, metrics = build_report_request(intake, report_root, official, listing_source, listing_rows, manifest, matching_result)
+    report["brand"]["logo_path"] = brand_logo_path
     write_json(report_root / "data" / "metrics.json", metrics)
     request_path = report_root / "report-request.json"
     write_json(request_path, report)

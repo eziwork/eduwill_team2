@@ -12,32 +12,31 @@ param(
 $ErrorActionPreference = "Stop"
 $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $skillRoot = Split-Path -Parent $scriptDir
+. (Join-Path $scriptDir "runtime_discovery.ps1")
+
 $resolvedIntake = (Resolve-Path -LiteralPath $IntakePath).Path
 $resolvedReportRoot = [System.IO.Path]::GetFullPath($ReportRoot)
 New-Item -ItemType Directory -Force -Path $resolvedReportRoot | Out-Null
-$profileCandidates = [System.Collections.Generic.List[string]]::new()
-$profileCandidates.Add([Environment]::GetFolderPath("UserProfile"))
-if ($skillRoot -match '^(?<profile>[A-Za-z]:\\Users\\[^\\]+)') { $profileCandidates.Add($Matches.profile) }
-$bundleRoot = $null
-foreach ($profileCandidate in @($profileCandidates | Select-Object -Unique)) {
-    $candidateRoot = Join-Path $profileCandidate ".cache\codex-runtimes\codex-primary-runtime\dependencies"
-    if (Test-Path -LiteralPath $candidateRoot -PathType Container) { $bundleRoot = $candidateRoot; break }
-}
-if ($null -eq $bundleRoot) { $bundleRoot = Join-Path $profileCandidates[0] ".cache\codex-runtimes\codex-primary-runtime\dependencies" }
+
 if ([string]::IsNullOrWhiteSpace($PythonExe)) {
-    $pythonCommand = Get-Command python -ErrorAction SilentlyContinue
-    $PythonExe = if ($null -ne $pythonCommand) { $pythonCommand.Source } else { Join-Path $bundleRoot "python\python.exe" }
+    $PythonExe = Resolve-EziworkRuntimePath -Kind Python -SkillRoot $skillRoot
+} else {
+    $PythonExe = Resolve-EziworkExecutableInput -Value $PythonExe
 }
-if ([string]::IsNullOrWhiteSpace($NodeExe)) {
-    $nodeCommand = Get-Command node -ErrorAction SilentlyContinue
-    $NodeExe = if ($null -ne $nodeCommand) { $nodeCommand.Source } else { Join-Path $bundleRoot "node\bin\node.exe" }
-}
-if (-not (Test-Path -LiteralPath $PythonExe -PathType Leaf)) { throw "PYTHON_RUNTIME_NOT_FOUND: $PythonExe" }
-if (-not (Test-Path -LiteralPath $NodeExe -PathType Leaf)) { throw "NODE_RUNTIME_NOT_FOUND: $NodeExe" }
-if ([string]::IsNullOrWhiteSpace([Environment]::GetEnvironmentVariable("CODEX_NODE_MODULES"))) {
-    $bundledNodeModules = Join-Path $bundleRoot "node\node_modules"
-    if (Test-Path -LiteralPath $bundledNodeModules -PathType Container) {
-        [Environment]::SetEnvironmentVariable("CODEX_NODE_MODULES", $bundledNodeModules, "Process")
+if ([string]::IsNullOrWhiteSpace($PythonExe)) { throw "PYTHON_RUNTIME_NOT_FOUND: install Python 3 or pass -PythonExe" }
+
+if (-not $SkipPdf) {
+    if ([string]::IsNullOrWhiteSpace($NodeExe)) {
+        $NodeExe = Resolve-EziworkRuntimePath -Kind Node -SkillRoot $skillRoot
+    } else {
+        $NodeExe = Resolve-EziworkExecutableInput -Value $NodeExe
+    }
+    if ([string]::IsNullOrWhiteSpace($NodeExe)) { throw "NODE_RUNTIME_NOT_FOUND: install Node.js or pass -NodeExe" }
+    if ([string]::IsNullOrWhiteSpace([Environment]::GetEnvironmentVariable("CODEX_NODE_MODULES"))) {
+        $nodeModulesPath = Resolve-EziworkNodeModulesPath -SkillRoot $skillRoot
+        if ($nodeModulesPath) {
+            [Environment]::SetEnvironmentVariable("CODEX_NODE_MODULES", $nodeModulesPath, "Process")
+        }
     }
 }
 
@@ -86,6 +85,7 @@ if (-not $SkipPdf) {
 
 [pscustomobject][ordered]@{
     status = "COMPLETED"
+    platform = Get-EziworkPlatformName
     skill_root = $skillRoot
     report_root = $resolvedReportRoot
     html = $htmlPath

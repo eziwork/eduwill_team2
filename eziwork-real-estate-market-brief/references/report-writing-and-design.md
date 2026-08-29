@@ -13,6 +13,13 @@
 - Legacy `COMPACT_6` intake is accepted only as an alias and must normalize to `EXTENDED_9` before build.
 - When evidence is unavailable, retain the page purpose with a designed evidence-status or value-confirmation component. Never replace the page with a sparse generic matrix or invent a fact to fill it.
 
+## Broker brand assets
+
+- Confirm `output.brand_name` and `output.logo_path` before generating a customer report. Ask for the office name and logo image together when either is missing.
+- Accept PNG, JPG, JPEG, WEBP, or SVG logos up to 5 MB. A relative path is resolved from the intake file and copied into the report package.
+- Display the logo and office name as one brand lockup on the cover and in every page footer. Preserve the logo's aspect ratio and embed it in the standalone HTML/PDF.
+- Treat the logo as a packaged asset: hash it in the evidence audit and fail the build if the staged file is missing.
+
 Every page starts with one useful takeaway. In `CUSTOMER_SALES`, lead with a verified attraction, fit, or reason to inspect the property and turn uncertainty into a value-confirmation point. In `BUYER_ADVISORY`, lead with the decision answer. Use calm Korean such as `확인됩니다`, `비교할 수 있습니다`, and `현장에서 확인하면 가치 판단이 더 구체화됩니다`. Do not expose internal process phrases or imply certainty.
 
 Time-sensitive facts include a source and basis date. Explain unfamiliar terms once. Generate repeated numbers from the same normalized field.

@@ -169,7 +169,7 @@ function Invoke-RtmsRequest {
 
 $resolvedConfig = (Resolve-Path -LiteralPath $ConfigPath).Path
 $config = Get-Content -LiteralPath $resolvedConfig -Raw -Encoding UTF8 | ConvertFrom-Json
-$registryPath = Join-Path (Split-Path -Parent $scriptDir) "references\source-registry.json"
+$registryPath = Join-Path (Join-Path (Split-Path -Parent $scriptDir) "references") "source-registry.json"
 $registry = Get-Content -LiteralPath $registryPath -Raw -Encoding UTF8 | ConvertFrom-Json
 
 $propertyType = ([string](Get-ConfigValue $config @("property_type", "target.property_type"))).ToUpperInvariant()
@@ -269,8 +269,8 @@ if ([string]::IsNullOrWhiteSpace($ServiceKey)) {
     $ServiceKey = Get-ProviderSecret -Provider DATA_GO_KR -CredentialPath $CredentialPath
 }
 if ([string]::IsNullOrWhiteSpace($ServiceKey)) {
-    $fixedPath = Get-ProviderSecretPath -Provider DATA_GO_KR -CredentialPath $CredentialPath
-    throw "DATA_GO_KR_SERVICE_KEY_REQUIRED: save the key to $fixedPath and retry."
+    $secretHint = Get-ProviderSecretHint -Provider DATA_GO_KR
+    throw "DATA_GO_KR_SERVICE_KEY_REQUIRED: $secretHint and retry."
 }
 $appearsPercentEncoded = $ServiceKey -match '%[0-9A-Fa-f]{2}'
 $escapedServiceKey = if ($ServiceKeyIsEncoded -or $appearsPercentEncoded) { $ServiceKey } else { [uri]::EscapeDataString($ServiceKey) }

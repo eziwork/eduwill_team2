@@ -9,8 +9,8 @@ Create one customer-readable HTML/PDF brief. When a broker or agent is preparing
 
 ## Route the request
 
-1. Read [references/intake-and-routing.md](references/intake-and-routing.md) and normalize the request to `intake v1.0`. Ask only for missing fields that change the source, comparison scope, or customer decision.
-2. Run `pwsh -NoProfile -File scripts/preflight_system.ps1 -Format Json` once. Intake and `demo` reports may continue without credentials; an `actual` official-data route may not collect until its credential is usable.
+1. Read [references/intake-and-routing.md](references/intake-and-routing.md) and normalize the request to `intake v1.0`. Before generating any customer HTML/PDF, confirm the real-estate office name (`output.brand_name`) and obtain its logo image (`output.logo_path`). If either is missing, ask for both in one concise question; do not silently substitute `EZIWORK` for an actual report. Ask only for other missing fields that change the source, comparison scope, or customer decision.
+2. Run `pwsh -NoProfile -File scripts/preflight_system.ps1 -Format Json` once. The same entrypoint supports Windows and macOS. Intake and `demo` reports may continue without credentials; an `actual` official-data route may not collect until its credential is usable. Read [references/platform-compatibility.md](references/platform-compatibility.md) only when preflight reports `ACTION_REQUIRED`/`BLOCKED` or platform setup is requested.
 3. Run `python scripts/validate_intake.py <intake.json>` and `python scripts/plan_sources.py <intake.json> --output <source-plan.json>`.
 4. For `actual` collection, read [references/collection-and-evidence.md](references/collection-and-evidence.md). Use only registered official endpoints. Read the browser section only when current listings are requested.
 5. Before analysis, read [references/analysis-and-matching.md](references/analysis-and-matching.md). If `task_mode` is `MARKET_REPORT_WITH_MATCHING`, candidates are required.

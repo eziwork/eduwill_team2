@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
-import { createRequire } from "node:module";
 import { pathToFileURL } from "node:url";
+import { resolveChromiumRuntime } from "./browser_runtime.mjs";
 
 
 function readArg(name) {
@@ -11,42 +11,14 @@ function readArg(name) {
 }
 
 
-function loadPlaywright() {
-  const candidates = [createRequire(path.resolve(process.cwd(), "package.json")), createRequire(import.meta.url)];
-  if (process.env.CODEX_NODE_MODULES) {
-    candidates.push(createRequire(path.join(process.env.CODEX_NODE_MODULES, "_resolver.cjs")));
-  }
-  for (const candidate of candidates) {
-    try {
-      return candidate("playwright");
-    } catch {
-      // Continue to the next module root.
-    }
-  }
-  throw new Error("Playwright was not found. Set CODEX_NODE_MODULES or install playwright in the workspace.");
-}
-
-
-function findBrowser() {
-  return [
-    process.env.HTML_PDF_BROWSER,
-    "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
-    "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",
-    "C:\\Program Files\\Microsoft\\Edge\\Application\\msedge.exe",
-    "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
-  ].filter(Boolean).find((candidate) => fs.existsSync(candidate));
-}
-
-
 async function main() {
   const input = path.resolve(readArg("--input"));
   const outputDir = path.resolve(readArg("--output-dir"));
   if (!fs.existsSync(input)) throw new Error(`Input HTML not found: ${input}`);
   fs.mkdirSync(outputDir, { recursive: true });
 
-  const { chromium } = loadPlaywright();
-  const executablePath = findBrowser();
-  const browser = await chromium.launch(executablePath ? { headless: true, executablePath } : { headless: true });
+  const { chromium, launchOptions } = resolveChromiumRuntime();
+  const browser = await chromium.launch(launchOptions);
   try {
     const page = await browser.newPage({ viewport: { width: 1188, height: 1680 }, deviceScaleFactor: 1 });
     await page.goto(pathToFileURL(input).href, { waitUntil: "networkidle" });
