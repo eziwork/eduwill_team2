@@ -28,6 +28,16 @@ FINGERPRINT_META = {
     "asset_manifest_fingerprint": "asset-manifest-sha256",
     "combined_release_fingerprint": "combined-release-sha256",
 }
+COPY_PROFILE = "EZIWORK_REALTOR_CUSTOMER_V1"
+INTERNAL_COPY_PHRASES = (
+    "EVIDENCE LIMITATION",
+    "협상 숫자 근거",
+    "근거가 있을 때만 쓰는",
+    "사용자가 제공했거나 계산 기록으로 검증된",
+    "데이터 파이프라인",
+    "모델 판단",
+    "증거 제한",
+)
 
 
 def _meta(text: str, name: str) -> str | None:
@@ -123,6 +133,7 @@ def validate_html(text: str, request_data: dict[str, Any] | None, base_dir: Path
         report_profile = _meta(text, "report-profile")
         quality_profile = _meta(text, "report-quality-profile")
         quality_profile_version = _meta(text, "report-quality-profile-version")
+        copy_profile = _meta(text, "copy-profile")
         recommended_model = _meta(text, "recommended-model")
         recommended_reasoning = _meta(text, "recommended-reasoning")
         if report_engine != "EZIWORK_GOLDEN_V3":
@@ -133,6 +144,8 @@ def validate_html(text: str, request_data: dict[str, Any] | None, base_dir: Path
             errors.append("legacy compact profile is disabled")
         if quality_profile != "TERRA_HIGH_100" or quality_profile_version != "1.0.0":
             errors.append("standard report must use TERRA_HIGH_100 version 1.0.0")
+        if copy_profile != COPY_PROFILE:
+            errors.append(f"standard report must use copy profile {COPY_PROFILE}")
         if recommended_model != "gpt-5.6-terra" or recommended_reasoning != "high":
             errors.append("Terra High recommendation metadata is missing or invalid")
         if communication_mode not in {"CUSTOMER_SALES", "BUYER_ADVISORY"}:
@@ -145,9 +158,14 @@ def validate_html(text: str, request_data: dict[str, Any] | None, base_dir: Path
             for phrase in ("즉시 계약 보류", "추격 금지", "계약금 송금 금지", "조건부 상단", "1차 제안"):
                 if phrase in text:
                     errors.append(f"CUSTOMER_SALES contains buyer-advisory wording: {phrase}")
+            if not any(phrase in text for phrase in ("현장 방문", "현장에서", "직접 확인")) or "상담" not in text:
+                errors.append("CUSTOMER_SALES must translate evidence into an on-site consultation action")
         elif communication_mode == "BUYER_ADVISORY":
             if "협상" not in text or "추가 산정 필요" not in text and "검증된 손익분기 가격" not in text:
                 errors.append("BUYER_ADVISORY is missing negotiation or unresolved-calculation disclosure")
+        for phrase in INTERNAL_COPY_PHRASES:
+            if phrase.lower() in text.lower():
+                errors.append(f"customer copy contains internal production language: {phrase}")
         if sheets != 9:
             errors.append(f"Golden V3 report must contain nine pages: html={sheets}")
 

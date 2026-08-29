@@ -16,7 +16,9 @@ Use this contract for every standard output from this skill. It was calibrated a
 
 ## Communication-mode separation
 
-`CUSTOMER_SALES` uses value discovery, on-site confirmation, and consultation language. It must not contain buyer-only offer anchors, a negotiation ceiling, “추격 금지”, “계약금 송금 금지”, or “즉시 계약 보류”.
+All customer-visible copy follows [global-customer-copy-contract.md](global-customer-copy-contract.md): translate facts into an experienced broker's spoken explanation, not formal analyst prose.
+
+`CUSTOMER_SALES` uses value discovery, on-site confirmation, and consultation language. Its first remembered message explains why the property deserves further attention, and its last message leads to a visit or consultation. It must not contain buyer-only offer anchors, a negotiation ceiling, “추격 금지”, “계약금 송금 금지”, or “즉시 계약 보류”.
 
 `BUYER_ADVISORY` may show a first offer, conditional ceiling, break-even condition, hold condition, and risk language only when each numeric value is user supplied or backed by a dated calculation record. Missing numbers remain visibly unresolved; do not infer a number merely to fill the design.
 
@@ -28,7 +30,7 @@ The score is all-or-nothing by category and totals 100:
 - Metadata 20: Golden V3 engine/version/profile plus Terra High profile/model/reasoning metadata.
 - Layout 20: nine DOM sheets, no viewport overflow, no element outside its sheet, no broken images, no unexpected print-page count.
 - Visual system 20: navy cover/final, light interior pages, required palette anchors, sufficient nonwhite content density.
-- Content safety 15: communication-mode leakage checks, target/source/verification presence, demo labeling rules.
+- Content safety 15: communication-mode leakage checks, customer copy profile, internal-language rejection, customer next-action presence, target/source/verification presence, and demo labeling rules.
 
 Any hard-gate failure makes the deliverable non-releasable even if the arithmetic subtotal is high. Release only at `100/100`.
 

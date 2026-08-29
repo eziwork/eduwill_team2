@@ -15,12 +15,13 @@ This skill is designed for a task already configured to `gpt-5.6-terra` with `hi
 2. Run `pwsh -NoProfile -File scripts/preflight_system.ps1 -Format Json` once. Use [references/platform-compatibility.md](references/platform-compatibility.md) only for setup failures.
 3. Run `scripts/validate_intake.py` and `scripts/plan_sources.py`. For actual official data, use only the registered routes in [references/collection-and-evidence.md](references/collection-and-evidence.md).
 4. Read [references/analysis-and-matching.md](references/analysis-and-matching.md) before calculating or matching. Keep completed transactions, current asking prices, user facts, and interpretation separate.
-5. Select exactly one communication mode:
+5. Read [references/global-customer-copy-contract.md](references/global-customer-copy-contract.md) for every customer-facing template. Translate data into the spoken explanation of an experienced broker; do not expose analyst, pipeline, or evidence-production language.
+6. Select exactly one communication mode:
    - `CUSTOMER_SALES`: broker-to-customer explanation that leads to an on-site consultation. Do not expose negotiation anchors, a buyer ceiling, or “즉시 계약 보류”. Read [references/customer-sales-copy.md](references/customer-sales-copy.md).
    - `BUYER_ADVISORY`: use only when the user explicitly requests independent buy-side risk or negotiation advice. Read [references/extended-buyer-decision-report.md](references/extended-buyer-decision-report.md). Numeric offer/ceiling/break-even advice must come from user-provided fields or a traceable dated calculation; otherwise show `추가 산정 필요`.
-6. Read [references/report-writing-and-design.md](references/report-writing-and-design.md), [references/customer-sales-golden-v3.md](references/customer-sales-golden-v3.md), and [references/terra-high-quality-contract.md](references/terra-high-quality-contract.md) before writing.
-7. Run only `scripts/run_report.ps1`. It prepares, audits, builds, inspects layout, renders, validates, captures every page, and runs the 100-point visual gate. Pass `-ReferencePdf` when a user supplies a reference PDF.
-8. Inspect all nine page PNGs with image vision. Repair the source and rerun until the automated score is `100`, all hard gates pass, and visual inspection finds no clipping, overlap, sparse accidental whitespace, broken image, or unreadable chart.
+7. Read [references/report-writing-and-design.md](references/report-writing-and-design.md), [references/customer-sales-golden-v3.md](references/customer-sales-golden-v3.md), and [references/terra-high-quality-contract.md](references/terra-high-quality-contract.md) before writing.
+8. Run only `scripts/run_report.ps1`. It prepares, audits, builds, inspects layout, renders, validates, captures every page, and runs the 100-point visual gate. Pass `-ReferencePdf` when a user supplies a reference PDF.
+9. Inspect all nine page PNGs with image vision. Repair the source and rerun until the automated score is `100`, all hard gates pass, and visual inspection finds no clipping, overlap, sparse accidental whitespace, broken image, unreadable chart, internal production language, or report-like sentences that a skilled broker would not naturally say to a customer.
 
 ## Terra High quality contract
 
@@ -29,6 +30,7 @@ This skill is designed for a task already configured to `gpt-5.6-terra` with `hi
 - Palette anchors: navy `#082f58`, blue `#0a67ff`, orange `#f37021`, pale blue surfaces, white cards.
 - One dominant visual or evidence structure per analytical page; three KPI cards where the page hierarchy calls for them.
 - HTML metadata includes `report-quality-profile=TERRA_HIGH_100`, version `1.0.0`, recommended model `gpt-5.6-terra`, and recommended reasoning `high`.
+- Customer-facing HTML metadata includes `copy-profile=EZIWORK_REALTOR_CUSTOMER_V1`.
 - `layout-inspection.json` has zero overflow, clipping, collision, missing-image, and unexpected-page findings.
 - `visual-quality.json` scores `100/100`. This means every declared deterministic gate passed; it is not a claim that an aesthetic judgment is mathematically universal.
 - When a reference PDF is supplied, report exact pixel equality separately from perceptual similarity. Never label a non-identical render as pixel-identical.

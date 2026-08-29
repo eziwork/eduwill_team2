@@ -165,6 +165,7 @@ def evaluate(args: argparse.Namespace) -> dict[str, Any]:
         "golden_engine": meta(html, "report-engine") == "EZIWORK_GOLDEN_V3" and meta(html, "report-engine-version") == "3.1.0",
         "extended_profile": meta(html, "report-profile") == "EXTENDED_9",
         "terra_quality_profile": meta(html, "report-quality-profile") == "TERRA_HIGH_100" and meta(html, "report-quality-profile-version") == "1.0.0",
+        "customer_copy_profile": meta(html, "copy-profile") == "EZIWORK_REALTOR_CUSTOMER_V1",
         "terra_recommendation": meta(html, "recommended-model") == "gpt-5.6-terra" and meta(html, "recommended-reasoning") == "high",
         "communication_mode": meta(html, "communication-mode") in {"CUSTOMER_SALES", "BUYER_ADVISORY"},
     }
@@ -201,10 +202,24 @@ def evaluate(args: argparse.Namespace) -> dict[str, Any]:
         "verification_present": bool(audit_fingerprint) and audit_fingerprint[:16] in re.sub(r"\s+", "", combined_text),
         "sources_present": 'class="sources"' in html and bool(request.get("sources")),
         "mode_separation": True,
+        "no_internal_copy_language": not any(
+            phrase.lower() in html.lower()
+            for phrase in (
+                "EVIDENCE LIMITATION",
+                "협상 숫자 근거",
+                "근거가 있을 때만 쓰는",
+                "사용자가 제공했거나 계산 기록으로 검증된",
+                "데이터 파이프라인",
+                "모델 판단",
+                "증거 제한",
+            )
+        ),
+        "customer_next_action": True,
         "demo_labeling": True,
     }
     if communication_mode == "CUSTOMER_SALES":
         safety_checks["mode_separation"] = not any(phrase in html for phrase in ("즉시 계약 보류", "추격 금지", "계약금 송금 금지", "조건부 상단", "1차 제안"))
+        safety_checks["customer_next_action"] = any(phrase in html for phrase in ("현장 방문", "현장에서", "직접 확인")) and "상담" in html
     elif communication_mode == "BUYER_ADVISORY":
         safety_checks["mode_separation"] = "협상" in html and ("추가 산정 필요" in html or "recommendation_basis" in json.dumps(request, ensure_ascii=False))
     evidence_mode = str(request.get("evidence_mode", ""))

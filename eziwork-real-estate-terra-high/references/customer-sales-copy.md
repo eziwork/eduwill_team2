@@ -1,11 +1,11 @@
 # Customer-sales copy mode
 
-Use `CUSTOMER_SALES` when a broker or agent will deliver the report to a prospective buyer, tenant, seller, or landlord. The reading journey is `관심 → 신뢰 → 현장 방문 → 조건 상담`. The report should make the next conversation easier while remaining factually traceable.
+Apply [global-customer-copy-contract.md](global-customer-copy-contract.md) first. Use `CUSTOMER_SALES` when a broker or agent will deliver the report to a prospective buyer, tenant, seller, or landlord. The reading journey is `관심 → 신뢰 → 현장 방문 → 조건 상담`. The report should help the customer find evidence-backed reasons to view the property positively and continue the conversation while remaining factually traceable.
 
 ## Message hierarchy
 
 1. Start with who the property suits and why it deserves attention.
-2. Present verified strengths before limitations: building preference, usable area, price position, nearby conveniences, current choice set, or transaction evidence.
+2. Present verified strengths before limitations: building preference, usable area, price position, nearby conveniences, current choice set, or transaction evidence. The first remembered message must answer `왜 이 매물을 더 볼 만한가?`.
 3. Explain price evidence as context for comparing value, not as a command to lower the seller's price.
 4. Reframe unknown floor, view, repair, and management condition as factors that can confirm or increase perceived value during the visit.
 5. End with a concrete, low-friction call to action: inspect the unit, compare the relevant alternatives, and discuss contract conditions.
@@ -56,3 +56,5 @@ The customer-facing conclusion should contain:
 3. one next action leading to visit, comparison, or consultation.
 
 Before delivery, reject the draft if it contains internal anchors, unsupported superlatives, a dominant negative verdict, or no clear call to action.
+
+Also reject it when data has merely been rewritten as formal report prose. Every major number must be followed by its meaning for this customer, the value point to inspect, or a concrete next action.

@@ -175,9 +175,14 @@ class EndToEndPreparationTests(unittest.TestCase):
             self.assertIn('<meta name="report-engine" content="EZIWORK_GOLDEN_V3">', html)
             self.assertIn('<meta name="report-engine-version" content="3.1.0">', html)
             self.assertIn('<meta name="report-quality-profile" content="TERRA_HIGH_100">', html)
+            self.assertIn('<meta name="copy-profile" content="EZIWORK_REALTOR_CUSTOMER_V1">', html)
             self.assertIn('<meta name="recommended-model" content="gpt-5.6-terra">', html)
             self.assertIn('<meta name="recommended-reasoning" content="high">', html)
             self.assertEqual(html.count('class="sheet page'), 9)
+            self.assertIn("고객의 조건에 잘 맞는 이유부터", html)
+            self.assertIn("현장에서 물건의 실제 가치를 확인한 뒤", html)
+            for phrase in ("EVIDENCE LIMITATION", "협상 숫자 근거", "근거가 있을 때만 쓰는", "사용자가 제공했거나 계산 기록으로 검증된"):
+                self.assertNotIn(phrase, html)
 
     def test_buyer_advisory_is_separate_and_does_not_invent_offer_numbers(self) -> None:
         fixtures = SKILL_ROOT / "tests" / "fixtures"
@@ -211,7 +216,7 @@ class EndToEndPreparationTests(unittest.TestCase):
             html = render_report(request)
             self.assertIn('content="BUYER_ADVISORY"', html)
             self.assertIn("매수 판단 리포트", html)
-            self.assertIn("협상 가격 사다리", html)
+            self.assertIn("가격을 이 범위로 보는 이유와 조건", html)
             self.assertIn("추가 산정 필요", html)
             self.assertNotIn("고객에게 보여줄 가치", html)
 
