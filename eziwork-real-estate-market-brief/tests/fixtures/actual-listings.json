@@ -1,0 +1,15 @@
+{
+  "source": {
+    "name": "네이버페이 부동산",
+    "url": "https://new.land.naver.com/",
+    "retrieved_at": "2026-08-29T09:05:00+09:00",
+    "quality_status": "SAMPLE_ONLY",
+    "query_conditions": "검증아파트 매매 · 전용 84㎡대 · 확인한 표본"
+  },
+  "listings": [
+    {"listing_id": "ACT-01", "name": "검증 후보 A", "price_krw": 1080000000, "exclusive_area_sqm": 84.43, "floor": 10},
+    {"listing_id": "ACT-02", "name": "검증 후보 B", "price_krw": 1120000000, "exclusive_area_sqm": 84.43, "floor": 15},
+    {"listing_id": "ACT-03", "name": "검증 후보 C", "price_krw": 1190000000, "exclusive_area_sqm": 84.43, "floor": 20}
+  ]
+}
+

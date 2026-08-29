@@ -1,0 +1,7 @@
+[
+  {"source_id": "MOLIT_APT_TRADE", "trade_type": "SALE", "contract_date": "2026-07-18", "deal_amount_krw": 1050000000, "exclusive_area_sqm": 84.43, "floor": 12, "cancelled": false},
+  {"source_id": "MOLIT_APT_TRADE", "trade_type": "SALE", "contract_date": "2026-06-11", "deal_amount_krw": 1030000000, "exclusive_area_sqm": 84.43, "floor": 8, "cancelled": false},
+  {"source_id": "MOLIT_APT_TRADE", "trade_type": "SALE", "contract_date": "2026-05-03", "deal_amount_krw": 1010000000, "exclusive_area_sqm": 84.43, "floor": 15, "cancelled": false},
+  {"source_id": "MOLIT_APT_TRADE", "trade_type": "SALE", "contract_date": "2026-04-19", "deal_amount_krw": 990000000, "exclusive_area_sqm": 84.43, "floor": 6, "cancelled": true}
+]
+

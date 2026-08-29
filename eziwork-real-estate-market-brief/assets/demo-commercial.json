@@ -1,0 +1,22 @@
+{
+  "intake_version": "1.0",
+  "report_id": "demo-commercial-sale",
+  "task_mode": "MARKET_REPORT",
+  "evidence_mode": "demo",
+  "basis_date": "2026-08-29",
+  "target": {"name": "교육역 인근 업무시설", "address": "서울특별시 예시구 교육로", "property_type": "COMMERCIAL", "lawd_cd": null, "lot_number_hint": "교육역 반경 비교"},
+  "transaction": {"trade_type": "SALE"},
+  "scope": {"building_mode": "NOT_APPLICABLE", "building_names": [], "area_mode": "SELECTED", "area_basis": "EXCLUSIVE", "requested_area_min_sqm": 70.0, "requested_area_max_sqm": 110.0},
+  "customer": {"role": "BUY", "decision_question": "상가·사무실 실거래 콘텐츠를 어떤 근거로 설명할까요?"},
+  "terms": {"proposed_price_krw": 850000000, "deposit_krw": null, "monthly_rent_krw": null, "intended_use": "업무시설"},
+  "period": {"history_years": 5},
+  "collection": {"include_current_market": false, "permission_mode": "RESEARCH_SAMPLE", "max_detail_pages": 0, "listings_path": null},
+  "matching": {"candidates_path": null, "must_haves": [], "preferences": []},
+  "output": {"formats": ["html", "pdf"], "brand_name": "EZIWORK", "brand_color": "#2c61ef", "agent_name": "", "contact": ""},
+  "demo": {"official_rows": [
+    {"trade_type": "SALE", "contract_date": "2026-05-20", "deal_amount_krw": 830000000, "exclusive_area_sqm": 86.0, "building_use": "업무시설", "cancelled": false},
+    {"trade_type": "SALE", "contract_date": "2025-12-15", "deal_amount_krw": 810000000, "exclusive_area_sqm": 91.0, "building_use": "업무시설", "cancelled": false},
+    {"trade_type": "SALE", "contract_date": "2025-06-10", "deal_amount_krw": 790000000, "exclusive_area_sqm": 82.5, "building_use": "업무시설", "cancelled": false}
+  ]}
+}
+

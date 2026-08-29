@@ -1,0 +1,22 @@
+{
+  "intake_version": "1.0",
+  "report_id": "demo-villa-sale",
+  "task_mode": "MARKET_REPORT",
+  "evidence_mode": "demo",
+  "basis_date": "2026-08-29",
+  "target": {"name": "교육동 빌라 매매", "address": "서울특별시 예시구 교육동", "property_type": "ROWHOUSE", "lawd_cd": null, "lot_number_hint": "교육동 일대"},
+  "transaction": {"trade_type": "SALE"},
+  "scope": {"building_mode": "NOT_APPLICABLE", "building_names": [], "area_mode": "SELECTED", "area_basis": "EXCLUSIVE", "requested_area_min_sqm": 55.0, "requested_area_max_sqm": 65.0},
+  "customer": {"role": "SELL", "decision_question": "현재 매도 설명자료를 어떻게 구성하면 좋을까요?"},
+  "terms": {"proposed_price_krw": 420000000, "deposit_krw": null, "monthly_rent_krw": null, "intended_use": null},
+  "period": {"history_years": 3},
+  "collection": {"include_current_market": false, "permission_mode": "RESEARCH_SAMPLE", "max_detail_pages": 0, "listings_path": null},
+  "matching": {"candidates_path": null, "must_haves": [], "preferences": []},
+  "output": {"formats": ["html", "pdf"], "brand_name": "EZIWORK", "brand_color": "#2c61ef", "agent_name": "", "contact": ""},
+  "demo": {"official_rows": [
+    {"trade_type": "SALE", "contract_date": "2026-06-08", "deal_amount_krw": 405000000, "exclusive_area_sqm": 59.8, "floor": 4, "cancelled": false},
+    {"trade_type": "SALE", "contract_date": "2026-02-19", "deal_amount_krw": 392000000, "exclusive_area_sqm": 58.2, "floor": 3, "cancelled": false},
+    {"trade_type": "SALE", "contract_date": "2025-10-12", "deal_amount_krw": 380000000, "exclusive_area_sqm": 60.1, "floor": 2, "cancelled": false}
+  ]}
+}
+

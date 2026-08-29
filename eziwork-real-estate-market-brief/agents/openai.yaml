@@ -1,0 +1,8 @@
+interface:
+  display_name: "EZIWORK 부동산 시세·시장조사"
+  short_description: "공식 시세 근거로 고객 설득형 부동산 영업 리포트 생성"
+  brand_color: "#2C61EF"
+  default_prompt: "Use $eziwork-real-estate-market-brief to create a sourced Korean customer-sales real-estate report that builds interest and leads to an on-site consultation."
+
+policy:
+  allow_implicit_invocation: true
