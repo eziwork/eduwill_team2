@@ -4,6 +4,8 @@
 
 이 저장소의 `eziwork-real-estate-market-brief` 폴더 전체가 하나의 설치 가능한 스킬입니다. 교육용 예제는 API 키 없이 실행되며, 실제 국토교통부 자료를 수집하려면 대상 데이터셋의 활용승인과 서비스키가 필요합니다. 실제 고객용 리포트는 생성 전에 부동산 이름과 로고 이미지를 확인하고, 로고를 표지와 전 페이지 하단에 포함합니다.
 
+`eziwork-final`은 고객용 HTML·PDF 브리핑, 근거감사, 국토교통부 API 시작 점검을 하나로 묶은 공유 버전입니다. 폴더 원본과 바로 전달할 수 있는 `eziwork-final.zip`을 함께 제공합니다. API 인증키가 없으면 작업 시작 시 채팅으로 요청하며, Windows는 현재 사용자 DPAPI, macOS는 현재 사용자 Keychain에 저장합니다.
+
 ## 설치
 
 `eziwork-real-estate-market-brief` 폴더를 운영체제에 맞는 위치에 복사한 뒤 새 Codex 작업에서 호출합니다.
@@ -19,6 +21,21 @@
 ```text
 $eziwork-real-estate-market-brief
 잠실엘스 전용 84㎡ 매매를 최근 3년 기준으로 분석해 고객용 PDF로 만들어줘.
+```
+
+공유 버전은 `eziwork-final.zip`의 압축을 풀어 아래 위치에 `eziwork-final` 폴더가 오도록 설치합니다.
+
+```text
+# Windows
+%USERPROFILE%\.codex\skills\eziwork-final
+
+# macOS
+~/.codex/skills/eziwork-final
+```
+
+```text
+$eziwork-final
+분석할 부동산과 고객의 의사결정 질문을 입력해 고객용 PDF를 만들어줘.
 ```
 
 빠른 교육용 실행은 스킬 폴더에서 다음 명령을 사용합니다.

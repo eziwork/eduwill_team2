@@ -1,0 +1,11 @@
+{
+  "test_name": "교육용_가상누리아파트_84형",
+  "transaction_type": "매매",
+  "lawd_cd": "00000",
+  "start_ym": "202507",
+  "end_ym": "202608",
+  "apartment_name_contains": "가상누리아파트",
+  "exclusive_area_min_sqm": 84.0,
+  "exclusive_area_max_sqm": 85.0,
+  "api_endpoint": "https://apis.data.go.kr/1613000/RTMSDataSvcAptTradeDev/getRTMSDataSvcAptTradeDev"
+}

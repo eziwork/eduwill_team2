@@ -1,0 +1,57 @@
+{
+  "request": {
+    "request_id": "FICTIONAL_NURI_101_ALL_SALE_20260823",
+    "task_mode": "FULL_REPORT",
+    "requested_at": "2026-08-23T00:00:00+09:00"
+  },
+  "target": {
+    "complex_name": "가상누리아파트",
+    "address_hint": "가상시 가상구 누리동 100",
+    "complex_no": null,
+    "property_type": "APT",
+    "lawd_cd": "00000"
+  },
+  "transaction": {
+    "trade_type": "SALE"
+  },
+  "scope": {
+    "building_mode": "SELECTED",
+    "building_names": ["101"],
+    "area_mode": "ALL",
+    "area_basis": "EXCLUSIVE",
+    "area_input_unit": "SQM",
+    "requested_area_values": [],
+    "requested_area_min_sqm": null,
+    "requested_area_max_sqm": null,
+    "selected_pyeong_type_numbers": [],
+    "selected_area_options": []
+  },
+  "optional_filters": {
+    "min_price_krw": null,
+    "max_price_krw": null,
+    "floor_bands": [],
+    "directions": [],
+    "verified_within_days": null
+  },
+  "period": {
+    "history_years": 3,
+    "allowed_history_years": [1, 3, 5, 7],
+    "molit_start_ym": "202308",
+    "molit_end_ym": "202608",
+    "naver_scope": "CURRENT_SNAPSHOT"
+  },
+  "collection": {
+    "sources": ["MOLIT", "NAVER_PAY_LAND"],
+    "permission_mode": "RESEARCH_SAMPLE",
+    "written_permission_reference": null,
+    "detail_policy": "REPORT_REPRESENTATIVES",
+    "max_detail_pages": 10
+  },
+  "output": {
+    "report_pages": ["PRICE", "MARKET_ANALYSIS"],
+    "save_raw": true,
+    "save_normalized": true,
+    "save_database_rows": true,
+    "output_format": ["MD", "CSV", "JSON", "PDF"]
+  }
+}

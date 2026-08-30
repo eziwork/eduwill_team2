@@ -1,0 +1,31 @@
+{
+  "market_snapshot": {
+    "raw_ad_count": 3,
+    "deduplicated_listing_count": 2,
+    "min_asking_price_krw": 510000000,
+    "median_asking_price_krw": 525000000,
+    "max_asking_price_krw": 540000000,
+    "snapshot_at": "2026-08-27T10:00:00+09:00",
+    "quality_status": "SAMPLE_ONLY"
+  },
+  "listing_groups": [
+    {
+      "property_group_id": "DEMO-GROUP-001",
+      "building_name": "101",
+      "floor_band": "중",
+      "representative_asking_price_krw": 510000000,
+      "ad_count": 2,
+      "dedup_basis": "NAVER_VISIBLE_GROUP",
+      "dedup_confidence": "HIGH"
+    },
+    {
+      "property_group_id": "DEMO-GROUP-002",
+      "building_name": "102",
+      "floor_band": "고",
+      "representative_asking_price_krw": 540000000,
+      "ad_count": 1,
+      "dedup_basis": "SINGLE",
+      "dedup_confidence": "HIGH"
+    }
+  ]
+}

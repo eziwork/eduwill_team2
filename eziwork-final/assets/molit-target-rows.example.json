@@ -1,0 +1,35 @@
+[
+  {
+    "contract_date": "2026-07-15",
+    "deal_amount_krw": 480000000,
+    "exclusive_area_sqm": 84.5,
+    "floor": 10,
+    "apartment_dong": "101",
+    "transaction_method": "중개거래",
+    "cancellation_marker": "N",
+    "cancellation_date": null,
+    "raw_source_file": "교육용 예시"
+  },
+  {
+    "contract_date": "2026-06-10",
+    "deal_amount_krw": 500000000,
+    "exclusive_area_sqm": 84.5,
+    "floor": 15,
+    "apartment_dong": "102",
+    "transaction_method": "중개거래",
+    "cancellation_marker": "N",
+    "cancellation_date": null,
+    "raw_source_file": "교육용 예시"
+  },
+  {
+    "contract_date": "2026-05-02",
+    "deal_amount_krw": 530000000,
+    "exclusive_area_sqm": 84.5,
+    "floor": 20,
+    "apartment_dong": "103",
+    "transaction_method": "중개거래",
+    "cancellation_marker": "Y",
+    "cancellation_date": "2026-05-20",
+    "raw_source_file": "교육용 예시"
+  }
+]

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Eziwork Final"
+  short_description: "체크포인트형 아파트 매수·매도 분석 리포트"
+  default_prompt: "$eziwork-final을 사용해 출처가 확인되는 아파트 BUY 또는 SELL 시세 브리핑을 고정 9페이지 체크포인트 편집형 HTML·PDF로 제작하세요."
+
+policy:
+  allow_implicit_invocation: true
